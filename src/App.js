@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+export default class App extends Component {
+  state = {
+    count: 0,
+    text: ["Hello World", "Hello Guys"],
+  };
+
+  onCount() {
+    this.setState({
+      count: this.state.count + 1,
+      text: "Hey guys",
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count on State</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Result :
+          {this.state.count > 11 ? (
+            <div>
+              <p>
+                {this.setState({
+                  count: 0,
+                })}
+              </p>
+            </div>
+          ) : (
+            <>{this.state.count >= 11 ? <p>Ini rusak</p> : this.state.count}</>
+          )}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <button onClick={(item) => this.onCount(item)}>Count on Me!</button>
+      </div>
+    );
+  }
 }
-
-export default App;
